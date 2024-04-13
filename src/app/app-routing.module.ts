@@ -37,10 +37,6 @@ const routes: Routes = [
     loadChildren: () => import('./update-inventory/update-inventory.module').then( m => m.UpdateInventoryPageModule)
   },
   {
-    path: 'take-pictures',
-    loadChildren: () => import('./take-pictures/take-pictures.module').then( m => m.TakePicturesPageModule)
-  },
-  {
     path: 'view-inventory',
     loadChildren: () => import('./view-inventory/view-inventory.module').then( m => m.ViewInventoryPageModule)
   },

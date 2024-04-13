@@ -1,13 +1,33 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>pickup</ion-title>
+    <ion-title>
+      Pickup Order
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pickup</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="customerName"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Phone Number</ion-label>
+      <ion-input type="tel" [(ngModel)]="phoneNumber"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Address</ion-label>
+      <ion-textarea [(ngModel)]="address"></ion-textarea>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Items to Pickup</ion-label>
+      <ion-textarea [(ngModel)]="items"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="submitOrder()">Submit Order</ion-button>
 </ion-content>

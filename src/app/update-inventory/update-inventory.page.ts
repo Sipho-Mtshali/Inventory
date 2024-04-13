@@ -7,7 +7,6 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-update-inventory',
   templateUrl: './update-inventory.page.html',
@@ -32,15 +31,12 @@ export class UpdateInventoryPage implements OnInit {
     private router: Router,
     private firestore: AngularFirestore,
     private fireStorage: AngularFireStorage
-  ) {
-    
-  }
-
+  ) {}
+  
   ngOnInit() {
     this.getPassedData();
     document.querySelector('body')?.classList.remove('scanner-active'); 
   }
-
   async scanBarcode() {
     document.querySelector('body')?.classList.add('scanner-active');
     await BarcodeScanner.checkPermission({ force: true });
@@ -54,7 +50,6 @@ export class UpdateInventoryPage implements OnInit {
       console.log(result.content); // log the raw scanned content
     }
   }
-
   async deleteFileIfExists(url: string): Promise<void> {
     if (url) {
       try {
@@ -66,15 +61,10 @@ export class UpdateInventoryPage implements OnInit {
     }
   }
   async updateItem() {
-
-
 if(this.imageBase64){
   await this.deleteFileIfExists.call(this, this.productInfor.imageUrl);
   this.imageUrl = await this.uploadImage(this.imageBase64);
 }
-
-
-   
     // Check if there's an existing item with the same name in the inventory collection
     const existingItemQueryStore = await this.firestore
       .collection('inventory')
@@ -92,9 +82,6 @@ if(this.imageBase64){
         quantity: this.itemQuantity,
         timestamp: new Date(), 
         imageUrl: this.imageUrl
-      
-        // Add timestamp });
-        //console.log("Storeroom Inventory Updated (Plused)");
       });
     }
   }

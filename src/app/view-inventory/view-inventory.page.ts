@@ -87,6 +87,6 @@ export class ViewInventoryPage implements OnInit {
         barcode: barcode || '',
       },
     };
-    this.router.navigate(['/update'], navi);
+    this.router.navigate(['/update-inventory'], navi);
   }
 }

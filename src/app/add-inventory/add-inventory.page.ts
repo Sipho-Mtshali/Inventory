@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { finalize } from 'rxjs/operators';
@@ -22,16 +22,18 @@ export class AddInventoryPage {
   imageBase64: any;
   imageUrl: string | null = null;
   cart: any[] = []; 
+
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage,
     private loadingController: LoadingController,
-   private  ToastController: ToastController,  private alertController: AlertController,
-  
+    private toastController: ToastController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
   }
+
   async takePicture() {
     const image = await Camera.getPhoto({
       quality: 90,
@@ -77,7 +79,7 @@ export class AddInventoryPage {
         timestamp: new Date(),
       };
       this.cart.push(newItem);
-      this.presentToast('Item added to cart');
+      this.presentToast('Item added to cart', 'success');
       await this.firestore.collection('inventory').add(newItem);
       this.clearFields();
     } catch (error) {
@@ -115,8 +117,8 @@ export class AddInventoryPage {
       // Clear the cart after generating the slip
       this.cart = [];
   
-      // Show success toast notification
-      this.presentToast('Slip generated successfully');
+      // Show success toast notification with a done button
+      this.presentToast('Slip generated successfully', 'success', true);
     } catch (error) {
       console.error('Error generating slip:', error);
       // Handle error
@@ -124,6 +126,7 @@ export class AddInventoryPage {
       loader.dismiss();
     } 
   }
+
   clearFields() {
     this.itemName = '';
     this.itemCategory = '';
@@ -136,11 +139,17 @@ export class AddInventoryPage {
     this.imageBase64 = null;
     this.imageUrl = null;
   }
-  async presentToast(message: string) {
-    const toast = await this.ToastController.create({
+
+  async presentToast(message: string, color: string = 'success', showButton: boolean = false) {
+    const toast = await this.toastController.create({
       message: message,
       duration: 2000,
-      position: 'top'
+      position: 'top',
+      color: color,
+      buttons: showButton ? [{
+        text: 'Done',
+        role: 'cancel'
+      }] : []
     });
     toast.present();
   }
