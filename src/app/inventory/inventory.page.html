@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Home Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <!-- Capturing Inventory Card -->
+      <ion-col size="12" size-md="6" (click)="captureInventory()">
+        <div class="card animated fadeIn" style="background-color: #ff6f61;">
+          <ion-img src="assets/GIF-03-Stock.gif" />
+          <p>Capture Inventory</p>
+        </div>
+      </ion-col>
+
+      <!-- Updating Inventory Card -->
+      <ion-col size="12" size-md="6" (click)="updateInventory()">
+        <div class="card animated fadeIn" style="background-color: #00b894;">
+          <ion-img src="assets/update.gif" />
+          <p>Update Inventory</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <!-- Taking Pictures Card -->
+      <ion-col size="12" size-md="6" (click)="delivery()">
+        <div class="card animated fadeIn" style="background-color: #fdcb6e;">
+          <ion-img src="assets/pictures.gif" />
+          <p>Take Pictures</p>
+        </div>
+      </ion-col>
+
+      <!-- Viewing Remaining Inventory Card -->
+      <ion-col size="12" size-md="6" (click)="viewRemainingInventory()">
+        <div class="card animated fadeIn" style="background-color: #74b9ff;">
+          <ion-img src="assets/view.gif" />
+          <p>View Inventory</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <!-- Analytics Card -->
+      <ion-col size="12" (click)="viewAnalytics()">
+        <div class="card animated fadeIn" style="background-color: #a29bfe;">
+          <ion-img src="assets/analytics.gif" />
+          <p>Analytics</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

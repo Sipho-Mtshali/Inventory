@@ -1,0 +1,39 @@
+<form class="form" #registrationForm="ngForm" (ngSubmit)="register()">
+  <p class="title">Register </p>
+  <p class="message">Signup now and get full access to our app. </p>
+      <div class="flex">
+      <label>
+          <input class="input" type="text" placeholder="" required="">
+          <span>Firstname</span>
+      </label>
+
+      <label>
+          <input class="input" type="text" placeholder="" required="">
+          <span>Lastname</span>
+      </label>
+  </div> 
+  
+  <label>
+    <input class="input" type="number" placeholder="" required="">
+    <span>Phone number</span>
+</label> 
+          
+  <label>
+      <input class="input" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="" required="">
+      <span>Email</span>
+  </label> 
+      
+  <label>
+      <input class="input" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="" required="">
+      <span>Password</span>
+  </label>
+  <label>
+      <input class="input" type="password" [(ngModel)]="confirmPassword" [ngModelOptions]="{standalone: true}" placeholder="" required="">
+      <span>Confirm password</span>
+  </label>
+  <div *ngIf="registrationForm.submitted && registrationForm.invalid">
+    <p class="error">Please fill out all required fields and ensure passwords match.</p>
+  </div>
+  <button class="submit" type="submit">Register</button>
+  <p class="signin">Already have an acount ? <a [routerLink]="['/login']">Signin</a> </p>
+</form>
