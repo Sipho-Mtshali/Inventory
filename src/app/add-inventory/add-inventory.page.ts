@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { finalize } from 'rxjs/operators';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+const pdfMake = require('pdfmake/build/pdfmake.js');
 
 @Component({
   selector: 'app-add-inventory',
@@ -21,7 +23,7 @@ export class AddInventoryPage {
   barcode: string = '';
   imageBase64: any;
   imageUrl: string | null = null;
-  cart: any[] = []; 
+  cart: any[] = [];
 
   constructor(
     private firestore: AngularFirestore,
@@ -31,22 +33,21 @@ export class AddInventoryPage {
     private alertController: AlertController
   ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async takePicture() {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Base64,
-      source: CameraSource.Camera
+      source: CameraSource.Camera,
     });
     this.imageBase64 = image.base64String;
   }
 
   async uploadImage(file: string) {
     const fileName = Date.now().toString();
-    const filePath = `images/${fileName}` ;
+    const filePath = `images/${fileName}`;
     const fileRef = this.storage.ref(filePath);
     const uploadTask = fileRef.putString(file, 'base64', {
       contentType: 'image/jpeg',
@@ -54,7 +55,7 @@ export class AddInventoryPage {
     const snapshot = await uploadTask;
     return snapshot.ref.getDownloadURL();
   }
-  
+
   async addItem() {
     const loader = await this.loadingController.create({
       message: 'Adding Inventory...',
@@ -95,12 +96,12 @@ export class AddInventoryPage {
       message: 'Generating Slip...',
     });
     await loader.present();
-  
+
     try {
       // Create a slip document in Firestore
       const slipData = {
         date: new Date(),
-        items: this.cart.map(item => ({
+        items: this.cart.map((item) => ({
           name: item.name,
           quantity: item.quantity,
           category: item.category,
@@ -113,10 +114,93 @@ export class AddInventoryPage {
         })),
       };
       await this.firestore.collection('slips').add(slipData);
-  
+
+      // Generate PDF
+      pdfMake.vfs = pdfFonts.pdfMake.vfs;
+      const docDefinition = {
+        content: [
+          {
+            text: 'BEST BRIGHT', // Adding the company name to the header
+            style: 'companyName',
+          },
+          {
+            text: 'Invoice',
+            style: 'header',
+          },
+          {
+            text: `Date: ${new Date().toLocaleDateString()}`, // Fixed syntax issue
+            style: 'subheader',
+          },
+          {
+            table: {
+              headerRows: 1,
+              widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+              body: [
+                [
+                  { text: 'Name', style: 'tableHeader' },
+                  { text: 'Quantity', style: 'tableHeader' },
+                  { text: 'Category', style: 'tableHeader' },
+                  { text: 'Description', style: 'tableHeader' },
+                  { text: 'Picker\'s Details', style: 'tableHeader' },
+                  { text: 'Date of Pickup', style: 'tableHeader' },
+                  { text: 'Time of Pickup', style: 'tableHeader' },
+                  { text: 'Barcode', style: 'tableHeader' },
+                  { text: 'Image', style: 'tableHeader' },
+                ],
+                ...this.cart.map((item) => [
+                  { text: item.name, style: 'tableCell' },
+                  { text: item.quantity.toString(), style: 'tableCell' },
+                  { text: item.category, style: 'tableCell' },
+                  { text: item.description, style: 'tableCell' },
+                  { text: item.pickersDetails, style: 'tableCell' },
+                  { text: item.dateOfPickup, style: 'tableCell' },
+                  { text: item.timeOfPickup, style: 'tableCell' },
+                  { text: item.barcode, style: 'tableCell' },
+                  { image: item.imageUrl, width: 50, height: 50 },
+                ]),
+              ],
+            },
+          },
+        ],
+        styles: {
+          header: {
+            fontSize: 24,
+            bold: true,
+            margin: [0, 0, 0, 10],
+            alignment: 'center',
+            color: '#007bff', // Blue color for the header
+          },
+          subheader: {
+            fontSize: 14,
+            bold: true,
+            margin: [0, 10, 0, 10],
+          },
+          tableHeader: {
+            bold: true,
+            fontSize: 12,
+            color: 'black',
+            alignment: 'center',
+            fillColor: '#f2f2f2', // Background color for the header
+          },
+          tableCell: {
+            fontSize: 12,
+            alignment: 'center',
+          },
+          companyName: {
+            fontSize: 28,
+            bold: true,
+            margin: [0, 0, 0, 20],
+            alignment: 'center',
+            color: '#dc3545',
+          },
+        },
+      };
+      const pdfDocGenerator = pdfMake.createPdf(docDefinition);
+      pdfDocGenerator.open();
+
       // Clear the cart after generating the slip
       this.cart = [];
-  
+
       // Show success toast notification with a done button
       this.presentToast('Slip generated successfully', 'success', true);
     } catch (error) {
@@ -124,7 +208,7 @@ export class AddInventoryPage {
       // Handle error
     } finally {
       loader.dismiss();
-    } 
+    }
   }
 
   clearFields() {
@@ -140,16 +224,24 @@ export class AddInventoryPage {
     this.imageUrl = null;
   }
 
-  async presentToast(message: string, color: string = 'success', showButton: boolean = false) {
+  async presentToast(
+    message: string,
+    color: string = 'success',
+    showButton: boolean = false
+  ) {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000,
       position: 'top',
       color: color,
-      buttons: showButton ? [{
-        text: 'Done',
-        role: 'cancel'
-      }] : []
+      buttons: showButton
+        ? [
+            {
+              text: 'Done',
+              role: 'cancel',
+            },
+          ]
+        : [],
     });
     toast.present();
   }
