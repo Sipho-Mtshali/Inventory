@@ -1,3 +1,10 @@
+ion-header {
+  ion-toolbar {
+      --background: #1ecee5;
+    color:#fff;
+    text-align: center;
+  }
+}
 .custom-button {
     background-color: red;
     border-radius: 50%;

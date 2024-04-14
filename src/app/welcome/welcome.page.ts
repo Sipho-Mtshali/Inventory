@@ -14,7 +14,7 @@ export class WelcomePage implements OnInit {
   async ngOnInit() {
     setTimeout(() => {
       this.router.navigate(['/login']); // Navigate to the login page after a delay
-    }, 3000);
+    }, 5000);
   }
 
 }

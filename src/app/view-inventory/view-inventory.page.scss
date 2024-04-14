@@ -1,12 +1,12 @@
 ion-header {
     ion-toolbar {
-        --background: #ff6f61;
+        --background: #1ecee5;
       color:#fff;
       text-align: center;
     }
   }
   ion-segment {
-    --background: #ff6f61;
+    --background: rgb(67, 72, 82);
     font-weight: bold;
   }
 
@@ -23,9 +23,9 @@ ion-content {
   }
   
   .animated-header {
-    background-color: #ff6f61;
+    background-color: #e82828;
     color: #fff;
-    animation: pulse 2s infinite;
+    
   }
   
   .animated-content {
@@ -68,5 +68,15 @@ transition: transform(-50%,-50%);
 text-align: center;
   }
 
+  p {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px; 
+  }
+  .label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px; 
+  }
 
   

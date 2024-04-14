@@ -1,14 +1,11 @@
-ion-content {
-    --background: #6c5c58; /* Set your desired background color */
-  }
-  
+
   .welcome-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    color: white;
+    color: rgb(0, 0, 0);
   
     .header {
       text-align: center;

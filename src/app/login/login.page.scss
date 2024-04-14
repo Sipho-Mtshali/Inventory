@@ -48,6 +48,10 @@
     outline: none;
     width: 100%;
     color: #d3d3d3;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 20px; 
+  
   }
   
   .form .btn {
@@ -68,6 +72,7 @@
     transition: .4s ease-in-out;
     background-color: #252525;
     color: white;
+    font-size: 18px; 
   }
   
   .button1:hover {
@@ -85,6 +90,7 @@
     transition: .4s ease-in-out;
     background-color: #252525;
     color: white;
+    font-size: 18px; 
   }
   
   .button2:hover {
@@ -101,6 +107,7 @@
     transition: .4s ease-in-out;
     background-color: #252525;
     color: white;
+    font-size: 20px; 
   }
   
   .button3:hover {

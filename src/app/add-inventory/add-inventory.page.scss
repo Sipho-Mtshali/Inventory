@@ -1,10 +1,15 @@
 ion-header {
   ion-toolbar {
-    --background: rgb(67, 72, 82); 
+      --background: #1ecee5;
     color:#fff;
+    text-align: center;
   }
 }
-
+.title{
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
 .container {
   display: flex;
   justify-content: center;
@@ -29,11 +34,17 @@ h1 {
   margin-bottom: 15px;
 }
 
-label {
+.label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-size: 20px; 
 }
+.inputs{
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
 
 input[type="text"],
 input[type="email"],
@@ -75,10 +86,12 @@ a:hover {
 }
 .date{
   margin-bottom: 25px;
+  font-size: 20px;
 }
 .custom-file-input {
   display: block;
   margin: 20px auto; /* Sets margin-top and margin-bottom to 20px and centers horizontally */
   text-align: center;
+  font-size: 20px;
   /* Add any other styles you need */
 }

@@ -1,6 +1,6 @@
 ion-header {
     ion-toolbar {
-      --background: #81675f; 
+      --background: #1ecee5; 
       color:#000000;
       text-align: center;
       font-size: 27px;
@@ -46,7 +46,7 @@ ion-card {
 }
 
 .card-header {
-  background-color: #337722;
+  background-color: #1ecee5;
   color: #fff;
   padding: 12px;
   font-family: 'Montserrat', sans-serif;
@@ -70,4 +70,9 @@ ion-card-content {
   ion-card-content {
     font-size: 14px;
   }
+}
+p{
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px; 
 }

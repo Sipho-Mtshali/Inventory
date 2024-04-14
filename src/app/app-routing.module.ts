@@ -60,6 +60,14 @@ const routes: Routes = [
     path: 'pickup',
     loadChildren: () => import('./pickup/pickup.module').then( m => m.PickupPageModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'user-profiles',
+    loadChildren: () => import('./user-profiles/user-profiles.module').then( m => m.UserProfilesPageModule)
+  },
 ];
 
 @NgModule({

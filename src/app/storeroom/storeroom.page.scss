@@ -1,6 +1,6 @@
 
 ion-toolbar {
-    --background:rgb(67, 72, 82); 
+    --background:rgb(116, 187, 69); 
     color:#fff;
     text-align: center;
   }
@@ -23,9 +23,8 @@ ion-content {
 }
 
 .animated-header {
-  background-color:rgb(67, 72, 82); 
+  background-color:rgb(116, 187, 69); 
   color: #fff;
-  animation: pulse 2s infinite;
 }
 
 .animated-content {
@@ -58,4 +57,14 @@ ion-content {
   100% {
     opacity: 1;
   }
+}
+p {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px; 
+}
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px; 
 }
