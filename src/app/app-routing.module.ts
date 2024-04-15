@@ -67,7 +67,11 @@ const routes: Routes = [
   {
     path: 'user-profiles',
     loadChildren: () => import('./user-profiles/user-profiles.module').then( m => m.UserProfilesPageModule)
+  },  {
+    path: 'store-inventory',
+    loadChildren: () => import('./store-inventory/store-inventory.module').then( m => m.StoreInventoryPageModule)
   },
+
 ];
 
 @NgModule({

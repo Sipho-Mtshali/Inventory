@@ -8,8 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search by barcode" (ionInput)="filterInventory()"></ion-searchbar>
-  <br>
+  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search by barcode" (ionInput)="filterInventory()"></ion-searchbar><br>
   <ion-segment value="segment">
     <ion-segment-button value="custom" routerLink="/inventory">
       <ion-label>Menu</ion-label>
@@ -25,11 +24,9 @@
   <ion-card class="inventory-item" *ngFor="let item of filteredInventory">
     <ion-card-header class="animated-header">
       <ion-card-title>
-        <ion-icon name="basket-outline"></ion-icon>
-        {{ item.name }}
+        <ion-icon name="basket-outline"></ion-icon>{{ item.name }}
       </ion-card-title>
     </ion-card-header>
-
     <ion-card-content class="animated-content">
       <ion-list lines="none">
         <ion-item>
@@ -63,19 +60,15 @@
       </ion-list>
       <img class="thumbnail" [src]="item.imageUrl" alt="{{ item.name }} Image">
     </ion-card-content>
-
-    <!-- Buttons container -->
     <ion-row class="ion-no-padding">
       <ion-col size="6">
         <ion-button (click)="openModal(item.imageUrl, item.name)" color="secondary" expand="block" shape="round">
-          <ion-icon name="eye-sharp"></ion-icon>
-          View
+          <ion-icon name="eye-sharp"></ion-icon>View
         </ion-button>
       </ion-col>
       <ion-col size="6">
         <ion-button (click)="goToUpdate(item.name,item.category,item.description,item.quantity,item.barcode,item.pickersDetails,item.dateOfPickup,item.timeOfPickup ,item.imageUrl )" color="primary" expand="block" shape="round">
-          <ion-icon name="sync-outline"></ion-icon>
-          Update
+          <ion-icon name="sync-outline"></ion-icon>Update
         </ion-button>
       </ion-col>
     </ion-row>

@@ -45,7 +45,20 @@ h1 {
   margin-bottom: 5px;
   font-size: 20px;
 }
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
 
+.button-container ion-button {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.button-container ion-button:last-child {
+  margin-right: 0;
+}
 
 input[type="text"],
 input[type="email"],
