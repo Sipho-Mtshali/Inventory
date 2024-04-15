@@ -14,36 +14,29 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-label class="label" position="floating">Item Name</ion-label>
-        <ion-input class="inputs" type="text" [(ngModel)]="itemName"></ion-input>
+        <ion-input class="label" label="Item Name" label-placement="floating" type="text" fill="outline" placeholder="Item Name"  [(ngModel)]="itemName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label class="label" position="floating" required>Barcode (Required)</ion-label>
-        <ion-input class="inputs"  type="text" [(ngModel)]="barcode"></ion-input>
+        <ion-input class="label" label="Barcode (Required)" label-placement="floating" type="text" fill="outline" placeholder="Barcode (Required)"  [(ngModel)]="barcode"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label class="label" position="floating">Quantity</ion-label>
-        <ion-input class="inputs"  type="number" [(ngModel)]="itemQuantity"></ion-input>
+        <ion-input class="label" label="Quantity" label-placement="floating" type="number" fill="outline" placeholder="Quantity"  [(ngModel)]="itemQuantity"></ion-input>
       </ion-item>  
       <ion-item>
-        <ion-label class="label" position="floating">Category</ion-label>
-        <ion-input class="inputs"  type="text" [(ngModel)]="itemCategory"></ion-input>
+        <ion-input class="label" label="Category" label-placement="floating" type="text" fill="outline" placeholder="Category"  [(ngModel)]="itemCategory"></ion-input>
       </ion-item>
+      <br>
       <ion-item>
-        <ion-label class="label" position="floating">Description</ion-label>
-        <ion-textarea class="inputs"  [(ngModel)]="itemDescription"></ion-textarea>
+        <ion-textarea class="label" label="Description" label-placement="floating" fill="outline" placeholder="Description"  [(ngModel)]="itemDescription"></ion-textarea>
       </ion-item>    
       <ion-item>
-        <ion-label class="label" position="floating">Picker's Details</ion-label>
-        <ion-input class="inputs"  type="text" [(ngModel)]="pickersDetails"></ion-input>
+        <ion-input class="label" label="Picker's Details" label-placement="floating" type="text" fill="outline" placeholder="Picker's Details"  [(ngModel)]="pickersDetails"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label class="label" position="floating" class="date">Date of Pickup</ion-label>
-        <ion-input class="inputs"  type="date" [(ngModel)]="dateOfPickup"></ion-input>
+        <ion-input class="label" label="Date of Pickup" label-placement="floating" type="date" fill="outline" placeholder="Date of Pickup"  [(ngModel)]="dateOfPickup"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label class="label" position="floating" class="date">Time of Pickup</ion-label>
-        <ion-input class="inputs"  type="time" [(ngModel)]="timeOfPickup"></ion-input>
+        <ion-input class="label" label="Time of Pickup" label-placement="floating" type="time" fill="outline" placeholder="Time of Pickup"  [(ngModel)]="timeOfPickup"></ion-input>
       </ion-item>
       <button id="fileInput" class="custom-file-input" (click)="takePicture()">
         <ion-icon name="camera"></ion-icon>
