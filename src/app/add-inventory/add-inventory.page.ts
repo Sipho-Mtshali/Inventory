@@ -124,7 +124,7 @@ export class AddInventoryPage {
             style: 'companyName',
           },
           {
-            text: 'Invoice',
+            text: 'Invoice slip',
             style: 'header',
           },
           {
@@ -196,7 +196,18 @@ export class AddInventoryPage {
         },
       };
       const pdfDocGenerator = pdfMake.createPdf(docDefinition);
-      pdfDocGenerator.open();
+      pdfDocGenerator.getBlob((blob: Blob) => {
+        const fileUrl = URL.createObjectURL(blob);
+        window.open(fileUrl);
+
+        // Optionally, you can save the file to the user's device
+        const a = document.createElement('a');
+        a.href = fileUrl;
+        a.download = 'slip.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
 
       // Clear the cart after generating the slip
       this.cart = [];

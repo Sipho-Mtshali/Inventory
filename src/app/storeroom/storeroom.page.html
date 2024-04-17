@@ -70,6 +70,11 @@
           View
         </ion-button>
       </ion-col>
+      <ion-col>
+        <ion-button (click)="goToUpdate(item.name,item.category,item.description,item.quantity,item.barcode,item.pickersDetails,item.dateOfPickup,item.timeOfPickup ,item.imageUrl )" color="primary" expand="block" shape="round">
+          <ion-icon name="sync-outline"></ion-icon>Update
+        </ion-button>
+      </ion-col>
     </ion-row>
   </ion-card>
   

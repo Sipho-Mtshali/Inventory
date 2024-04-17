@@ -83,7 +83,7 @@ export class StoreInventoryPage implements OnInit {
   
     // Search for the product with the entered barcode in Firestore
     const querySnapshot = await this.firestore
-      .collection('storeroomInventory')
+      .collection('inventory')
       .ref.where('barcode', '==', this.barcode.trim())
       .limit(1)
       .get();
@@ -152,7 +152,7 @@ showCard() {
       this.showCard();
       
       const querySnapshot = await this.firestore
-      .collection('storeroomInventory')
+      .collection('inventory')
       .ref.where('barcode', '==', result.content)
       .limit(1)
       .get();
@@ -208,20 +208,11 @@ showCard() {
       if (this.imageBase64) {
         this.imageUrl = await this.uploadImage(this.imageBase64);
       }
-      const userEmail = await this.firestore
-        .collection('Users')
-        .ref.where('email', '==', this.pickersDetails)
-        .get();
-      console.log(userEmail);
-      if (userEmail.empty) {
-        this.presentToast('this delivery guy is not no our system',"warning");
-        console.log('this delivary guy is not no our system');
-        return;
-      }
+      
 
       // Check if there is an existing item with the same barcode in the storeroomInventory collection
       const existingItemQuery = await this.firestore
-        .collection('storeroomInventory')
+        .collection('inventory')
         .ref.where('barcode', '==', this.barcode)
         .get();
       if (!existingItemQuery.empty) {
@@ -244,16 +235,15 @@ showCard() {
 
         await existingItemDoc.ref.update({ quantity: updatedQuantity });
         console.log('Storeroom Inventory Updated (Minused)');
-      } else {
-        this.presentToast(
-          'this product barcode does  not metch any on our storeroom',"warning"
-        );
+      } else 
+      {
+        this.presentToast('this product barcode does  not metch any on our storeroom',"warning");
         return;
       }
       ///////////////////////////////////////
       // Check if there's an existing item with the same name in the inventory collection
       const existingItemQueryStore = await this.firestore
-        .collection('inventory')
+        .collection('store')
         .ref.where('barcode', '==', this.barcode)
         .get();
       if (!existingItemQueryStore.empty) {
@@ -282,7 +272,7 @@ showCard() {
       this.cart.push(newItem);
 
       this.presentToast('Item added to cart',"successfull");
-      await this.firestore.collection('inventory').add(newItem);
+      await this.firestore.collection('store').add(newItem);
       this.clearFields();
     } catch (error) {
       console.error('Error adding inventory:', error);
@@ -318,10 +308,6 @@ showCard() {
       pdfMake.vfs = pdfFonts.pdfMake.vfs;
      // Calculate column widths based on content length
 
-
-// Define PDF content
-// Define PDF content
-// Define PDF content
 const docDefinition = {
   content: [
     {

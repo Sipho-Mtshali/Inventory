@@ -23,7 +23,12 @@
         <ion-input class="label" label="Quantity" label-placement="floating" type="number" fill="outline" placeholder="Quantity"  [(ngModel)]="itemQuantity"></ion-input>
       </ion-item>  
       <ion-item>
-        <ion-input class="label" label="Category" label-placement="floating" type="text" fill="outline" placeholder="Category"  [(ngModel)]="itemCategory"></ion-input>
+        <ion-label class="label">Category</ion-label>
+        <ion-select [(ngModel)]="itemCategory">
+          <ion-select-option value="Cleaning Detergents">Cleaning Detergents</ion-select-option>
+          <ion-select-option value="Plastics">Plastics</ion-select-option>
+          <ion-select-option value="Cleaning Equipment">Cleaning Equipment</ion-select-option> 
+        </ion-select>
       </ion-item>
       <br>
       <ion-item>
@@ -43,10 +48,16 @@
           <ion-icon name="camera" slot="start"></ion-icon>
           Take Picture
         </ion-button>
-        <ion-button expand="block" (click)="addItem()">Add Item</ion-button>
+        <ion-button expand="block" (click)="addItem()">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          Add Item
+        </ion-button>
       </div>
 
-      <ion-button expand="block" (click)="generateSlip()">DONE</ion-button>
+      <ion-button expand="block" (click)="generateSlip()">
+        <ion-icon name="print"></ion-icon>
+        print Slip
+      </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

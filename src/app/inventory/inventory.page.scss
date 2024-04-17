@@ -5,6 +5,11 @@ ion-header {
     text-align: center;
   }
 }
+.background-gradient {
+  background: linear-gradient(to bottom right, #000000, #3822b6);
+  padding: 20px;
+  min-height: 100%;
+}
 .card {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -42,4 +47,6 @@ ion-header {
   .gradient-5 {
     background: linear-gradient(45deg, #b2bec3, #dfe6e9);
   }
-  
+  p{
+    font-size: 25px;
+  }

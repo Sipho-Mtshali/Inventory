@@ -1,173 +1,81 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/inventory" ></ion-back-button>
+      <ion-back-button defaultHref="/inventory"></ion-back-button>
     </ion-buttons>
-    <ion-segment color="success" value="all">
-      <ion-segment-button value="all">
-        <ion-label>Analytics</ion-label>
-      </ion-segment-button>
-      <ion-segment-button routerLink="/delivery" value="favorites">
-        <ion-label>Invoice Slip</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+    <ion-title>Inventory Analytics</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="scroll-container">
-    <p class="pp">STORE INVENTORY</p>
-    <div class="chart-container">
-      <canvas id="quantityByCategoryChart"></canvas>
-    </div>
-    <br>
-    <br>
-    <p class="pp">STOREROOM INVENTORY</p>
-    <div class="chart-container">
-      <canvas id="quantityByCategoryStoreroomChart"></canvas>
-    </div>
-    <br>
-    <br>
-    <p class="pp">TOTAL CATEGORY COMPARISON ON BOTH STORE AND STOREROOM</p>
-    <div class="chart-container">
-      <canvas id="categoryComparisonChart"></canvas>
-    </div>
-    <br>
-    <br>
-    <p class="pp">TOTAL PRODUCT QUANTITIES </p>
-    <div class="chart-container">
-      <canvas id="totalQuantitiesChart"></canvas>
-    </div>
-    <br>
-    <br>
-    <p class="pp">BEST PERFORMING PRODUCT</p>
-    <div class="chart-container">
-      <canvas id="updateFrequencyChart"></canvas>
-    </div>
+<ion-content>
+  <div class="background-gradient">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6">
+          <ion-card class="rounded-card">
+            <ion-card-header>
+              <ion-card-title>
+                <ion-icon name="basket"></ion-icon> STORE INVENTORY
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <canvas id="quantityByCategoryChart"></canvas>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <ion-card class="rounded-card">
+            <ion-card-header>
+              <ion-card-title>
+                <ion-icon name="cube"></ion-icon> STOREROOM INVENTORY
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <canvas id="quantityByCategoryStoreroomChart"></canvas>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-md="6">
+          <ion-card class="rounded-card">
+            <ion-card-header>
+              <ion-card-title>
+                <ion-icon name="stats-chart"></ion-icon> TOTAL CATEGORY COMPARISON
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <canvas id="categoryComparisonChart"></canvas>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <ion-card class="rounded-card">
+            <ion-card-header>
+              <ion-card-title>
+                <ion-icon name="bar-chart"></ion-icon> TOTAL PRODUCT QUANTITIES
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <canvas id="totalQuantitiesChart"></canvas>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card class="rounded-card">
+            <ion-card-header>
+              <ion-card-title>
+                <ion-icon name="trophy"></ion-icon> BEST PERFORMING PRODUCT
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <canvas id="updateFrequencyChart"></canvas>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // Chart configurations
-  var ctx1 = document.getElementById('quantityByCategoryChart').getContext('2d');
-  var quantityByCategoryChart = new Chart(ctx1, {
-    type: 'pie',
-    data: {
-      labels: ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'],
-      datasets: [{
-        label: 'Quantity',
-        data: [12, 19, 3, 5, 2],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)'
-        ],
-        borderWidth: 1
-      }]
-    }
-  });
-
-  var ctx2 = document.getElementById('quantityByCategoryStoreroomChart').getContext('2d');
-  var quantityByCategoryStoreroomChart = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-      labels: ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'],
-      datasets: [{
-        label: 'Quantity',
-        data: [7, 11, 5, 8, 3],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  var ctx3 = document.getElementById('categoryComparisonChart').getContext('2d');
-  var categoryComparisonChart = new Chart(ctx3, {
-    type: 'doughnut',
-    data: {
-      labels: ['Store', 'Storeroom'],
-      datasets: [{
-        label: 'Quantity',
-        data: [100, 150],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)'
-        ],
-        borderWidth: 1
-      }]
-    }
-  });
-
-  var ctx4 = document.getElementById('totalQuantitiesChart').getContext('2d');
-  var totalQuantitiesChart = new Chart(ctx4, {
-    type: 'horizontalBar',
-    data: {
-      labels: ['Total Quantity'],
-      datasets: [{
-        label: 'Store',
-        data: [100],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1
-      }, {
-        label: 'Storeroom',
-        data: [150],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      scales: {
-        x: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  var ctx5 = document.getElementById('updateFrequencyChart').getContext('2d');
-  var updateFrequencyChart = new Chart(ctx5, {
-    type: 'radar',
-    data: {
-      labels: ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5'],
-      datasets: [{
-        label: 'Performance',
-        data: [65, 59, 90, 81, 56],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        r: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-</script>

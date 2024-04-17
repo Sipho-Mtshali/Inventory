@@ -85,7 +85,7 @@ export class AnalyticsPage implements OnInit {
       .subscribe((updateFrequencyData: UpdateFrequencyData[]) => {
         const ctx = document.getElementById('updateFrequencyChart') as HTMLCanvasElement;
         new Chart(ctx, {
-          type: 'bar',
+          type: 'bar', // Use 'bar' chart type
           data: {
             labels: updateFrequencyData.map((item) => item.productName),
             datasets: [
@@ -99,7 +99,7 @@ export class AnalyticsPage implements OnInit {
             ],
           },
           options: {
-            indexAxis: 'y',
+            indexAxis: 'y', // Set the indexAxis to 'y' for horizontal bar chart
             scales: {
               x: {
                 beginAtZero: true,
@@ -180,7 +180,7 @@ export class AnalyticsPage implements OnInit {
 
   generateQuantityByCategory(){
     this.firestore
-      .collection('storeroomInventory')
+      .collection('inventory')
       .valueChanges()
       .pipe(
         map((data: unknown[]) => {
@@ -207,36 +207,24 @@ export class AnalyticsPage implements OnInit {
           return quantitiesByCategory[index] < lowQuantityThreshold;
         });
 
-        const ctx = document.getElementById('quantityByCategoryStorommChart') as HTMLCanvasElement;
+        const ctx = document.getElementById('quantityByCategoryStoreroomChart') as HTMLCanvasElement;
         new Chart(ctx, {
-          type: 'bar',
+          type: 'radar', // Change chart type to radar
           data: {
             labels: uniqueCategories,
             datasets: [
               {
                 label: 'Quantity',
                 data: quantitiesByCategory,
-                backgroundColor: (context) => {
-                  const index = context.dataIndex;
-                  const category = uniqueCategories[index];
-                  return lowQuantityCategories.includes(category)
-                    ? 'rgba(255, 99, 132, 0.2)' // Red color for low quantity
-                    : 'rgba(75, 192, 192, 0.2)'; // Default color
-                },
-                borderColor: (context) => {
-                  const index = context.dataIndex;
-                  const category = uniqueCategories[index];
-                  return lowQuantityCategories.includes(category)
-                    ? 'rgba(255, 99, 132, 1)' // Red color for low quantity
-                    : 'rgba(75, 192, 192, 1)'; // Default color
-                },
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
               },
             ],
           },
           options: {
             scales: {
-              y: {
+              r: {
                 beginAtZero: true,
               },
             },
@@ -289,7 +277,7 @@ export class AnalyticsPage implements OnInit {
       .subscribe((comparisonData: CategoryComparisonData[]) => {
         const ctx = document.getElementById('categoryComparisonChart') as HTMLCanvasElement;
         new Chart(ctx, {
-          type: 'pie',
+          type: 'pie', // Keep the pie chart type
           data: {
             labels: comparisonData.map((item) => item.category),
             datasets: [
@@ -351,7 +339,7 @@ export class AnalyticsPage implements OnInit {
       .subscribe((totalQuantities: TotalQuantitiesData[]) => {
         const ctx = document.getElementById('totalQuantitiesChart') as HTMLCanvasElement;
         new Chart(ctx, {
-          type: 'pie',
+          type: 'doughnut', // Change chart type to doughnut
           data: {
             labels: totalQuantities.map((item) => item.category),
             datasets: [

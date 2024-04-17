@@ -29,7 +29,7 @@ export class ViewInventoryPage implements OnInit {
 
   getInventory() {
     this.firestore
-      .collection('inventory', (ref) => ref.orderBy('timestamp', 'desc'))
+      .collection('store', (ref) => ref.orderBy('timestamp', 'desc'))
       .valueChanges()
       .subscribe((data: any[]) => {
         this.inventory = data;
@@ -65,6 +65,6 @@ export class ViewInventoryPage implements OnInit {
         barcode: barcode || '',
       },
     };
-    this.router.navigate(['/update-inventory'], navi);
+    this.router.navigate(['/delivery'], navi);
   }
 }

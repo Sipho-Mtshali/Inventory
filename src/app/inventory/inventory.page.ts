@@ -20,6 +20,9 @@ export class InventoryPage implements OnInit {
     
     this.router.navigate(['/add-inventory']);
   }
+  storeInventory() {
+    this.router.navigateByUrl('/store-inventory');
+  }
 
   updateInventory() {
     this.router.navigateByUrl('/update-inventory');
