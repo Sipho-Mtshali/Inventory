@@ -71,6 +71,10 @@ const routes: Routes = [
     path: 'store-inventory',
     loadChildren: () => import('./store-inventory/store-inventory.module').then( m => m.StoreInventoryPageModule)
   },
+  {
+    path: 'view-picked',
+    loadChildren: () => import('./view-picked/view-picked.module').then( m => m.ViewPickedPageModule)
+  },
 
 ];
 

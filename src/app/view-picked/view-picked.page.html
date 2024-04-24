@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h1>Generate slip</h1>
+  <br>
+  <br>
+  <hr>
+    <ng-container *ngFor="let order of products">
+        <h2 class="item-size">Name : {{ order.name  }}</h2>
+        <p class="item-size">Bar Code: {{ order.barcode }}</p>
+        <h2 class="item-size">Picker's detail: {{ order.pickersDetails  }}</h2>
+        <h2 class="item-size">Description: {{ order.description  }}</h2>
+        <h2>Date of pickUp: {{ order.dateOfPickup }}</h2>
+        <p class="item-size">Time of pickUp: {{ order.timeOfPickup }}</p>
+        <p class="item-quantity">Quantity: {{ order.quantity }}</p>
+
+     
+        <ion-button (click)="generatePDF(order)">Download Slip</ion-button>
+    </ng-container>
+  
+    
+
+</ion-content>

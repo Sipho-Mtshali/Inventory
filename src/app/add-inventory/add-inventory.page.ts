@@ -167,8 +167,8 @@ export class AddInventoryPage {
             fontSize: 24,
             bold: true,
             margin: [0, 0, 0, 10],
-            alignment: 'center',
-            color: '#007bff', // Blue color for the header
+            alignment: 'right',
+            color: '', // Blue color for the header
           },
           subheader: {
             fontSize: 14,
@@ -179,8 +179,8 @@ export class AddInventoryPage {
             bold: true,
             fontSize: 12,
             color: 'black',
-            alignment: 'center',
-            fillColor: '#f2f2f2', // Background color for the header
+            alignment: 'right',
+            fillColor: '', // Background color for the header
           },
           tableCell: {
             fontSize: 12,

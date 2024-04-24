@@ -1,0 +1,50 @@
+/* view-picked.page.css */
+
+/* Style for the header */
+ion-header {
+    background-color: #3880ff; /* You can change this color to fit your design */
+    color: #fff; /* Text color for the header */
+  }
+  
+  /* Style for the toolbar */
+  ion-toolbar {
+    --ion-color-base: #3880ff; /* You can change this color to fit your design */
+  }
+  
+  /* Style for the title */
+  ion-title {
+    font-size: 1.5rem; /* You can adjust the font size */
+  }
+  
+  /* Style for the ion-list */
+  ion-list {
+    margin-top: 20px; /* Adjust the top margin as needed */
+  }
+  
+  /* Style for the ion-item */
+  ion-item {
+    border-bottom: 1px solid #ddd; /* Add a border between items */
+  }
+  
+  /* Style for the ion-thumbnail */
+  ion-thumbnail {
+    width: 80px; /* Set the width of the thumbnail */
+    height: 80px; /* Set the height of the thumbnail */
+  }
+  
+
+  ion-label {
+    margin-left: 10px; /* Adjust the left margin */
+  }
+  
+  
+  h2 {
+    font-size: 1rem; /* You can adjust the font size */
+    font-weight:normal; /* Make the heading bold */
+  }
+  
+  /* Style for the p elements */
+  p {
+    font-size: 1rem; /* You can adjust the font size */
+    margin: 5px 0; /* Add some margin for spacing */
+  }
