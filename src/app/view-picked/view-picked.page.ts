@@ -46,7 +46,7 @@ export class ViewPickedPage implements OnInit {
     await this.fetchInventoriesFromFirestore();
     this.firestore.collection('inventory').valueChanges().subscribe((products) => {
       this.products = products;
-      console.log(products);
+      console.log(products); 
     });
   }
 
