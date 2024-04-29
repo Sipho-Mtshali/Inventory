@@ -80,7 +80,7 @@ export class ViewPickedPage implements OnInit {
         content: [
           { text: 'Receipt', style: 'header' },
           [
-            { text: 'Item Name: ' + selectedOrder.itemName },
+            { text: 'Item Name: ' + selectedOrder.name },
             { text: 'Bar Code: ' + selectedOrder.barcode },
             { text: 'Pickers Details: ' + selectedOrder.pickersDetails },
             { text: 'Description: ' + selectedOrder.description },

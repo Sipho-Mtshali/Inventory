@@ -48,3 +48,32 @@ ion-header {
     font-size: 1rem; /* You can adjust the font size */
     margin: 5px 0; /* Add some margin for spacing */
   }
+  .header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .custom-card {
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+  
+  .barcode, .picker, .description, .date, .time, .quantity {
+    margin-bottom: 8px;
+  }
+  
+  .download-button {
+    margin-top: 16px;
+    --background: linear-gradient(to right, #fd746c, #ff9068);
+  }
+  .item-name {
+    color: #007bff; /* Blue color, you can change it to your preferred color */
+  }
+  
+  

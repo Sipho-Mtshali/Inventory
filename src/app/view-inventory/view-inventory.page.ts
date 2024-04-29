@@ -65,6 +65,7 @@ export class ViewInventoryPage implements OnInit {
         barcode: barcode || '',
       },
     };
-    this.router.navigate(['/delivery'], navi);
+    this.router.navigate(['/view-picked'], navi);
   }
+  
 }

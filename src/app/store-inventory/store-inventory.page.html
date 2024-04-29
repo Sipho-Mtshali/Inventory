@@ -60,7 +60,7 @@
       </ion-button >
 
       <ion-button expand="block" (click)="addItem()">Add Item</ion-button>
-      <ion-button expand="block"  color="success" (click)="generateSlip()">print Slip</ion-button>
+      <ion-button expand="block"  color="success" [routerLink]="['/view-picked']">print Slip</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
